@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MOCK_REVIT_API)' == 'true'">
+    <DefineConstants>$(DefineConstants);MOCK_REVIT_API</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../JakesCommands.Core/JakesCommands.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MOCK_REVIT_API)' != 'true'">
+    <Reference Include="RevitAPI">
+      <HintPath>$(REVIT_API_DIR)\RevitAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>$(REVIT_API_DIR)\RevitAPIUI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
