@@ -1,0 +1,46 @@
+name: release-artifacts
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build-package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build real Revit addin (non-mock)
+        run: dotnet build .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj -c Release -o .\out\build
+
+      - name: Prepare package files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path out | Out-Null
+          Copy-Item .\out\build\JakesCommands.RevitAddin.dll .\out\JakesCommands.RevitAddin.dll
+          Copy-Item .\deployment\JakesCommands.addin .\out\JakesCommands.addin
+          Compress-Archive -Path .\out\JakesCommands.RevitAddin.dll, .\out\JakesCommands.addin -DestinationPath .\out\JakesCommands-Install.zip -Force
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: JakesCommands-Install
+          path: |
+            out/JakesCommands.RevitAddin.dll
+            out/JakesCommands.addin
+            out/JakesCommands-Install.zip
+
+      - name: Upload release assets
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            out/JakesCommands.RevitAddin.dll
+            out/JakesCommands.addin
+            out/JakesCommands-Install.zip
