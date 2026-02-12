@@ -4,27 +4,6 @@ A Revit add-in that rotates selected objects by **90°** or **180°**.
 
 ---
 
-## For Jake (non-programmer): easiest way to install
-
-Yes — if you want this to be easy for Jake, you should publish a **GitHub Release** each time you update the add-in.
-
-### Why a Release helps
-A Release gives Jake a single ZIP download. He does **not** need Visual Studio, Git, or command-line tools.
-
-### What you should do on GitHub now
-1. Go to your repo on GitHub.
-2. Click **Releases** → **Draft a new release**.
-3. Create a tag like `v1.0.0`.
-4. In this repo, upload these files as release assets:
-   - `JakesCommands.RevitAddin.dll`
-   - `JakesCommands.addin`
-   - (Optional but recommended) `JakesCommands-Install.zip` that includes both files and a 1-page install note.
-5. Publish release.
-
-After this, Jake only downloads and copies files to one folder.
-
----
-
 ## Jake’s install steps (Windows + Revit)
 
 ### 1) Download
@@ -71,14 +50,14 @@ You should end up with:
 - Confirm `.addin` file points to the exact DLL path.
 
 ### Still not working
-Send IT or the developer:
+Send Brandon:
 - Revit version (year)
 - screenshot of `%AppData%\Autodesk\Revit\Addins\<year>` contents
 - exact error message popup
 
 ---
 
-## For developer/IT: build and package
+## For Brandon: build and package
 
 ## Project layout
 
