@@ -1,3 +1,4 @@
+using Xunit;
 using JakesCommands.Core;
 
 namespace JakesCommands.Core.Tests;
