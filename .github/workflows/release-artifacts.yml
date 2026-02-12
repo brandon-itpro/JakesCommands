@@ -23,18 +23,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path out | Out-Null
-
-          $dll = Get-ChildItem -Path .\src\JakesCommands.RevitAddin\bin -Recurse -File -Filter JakesCommands.RevitAddin.dll |
-            Where-Object { $_.FullName -notmatch '\\ref\\' } |
-            Select-Object -First 1
-
-          if (-not $dll) {
-            Write-Error "Could not find JakesCommands.RevitAddin.dll under src/JakesCommands.RevitAddin/bin after build."
-            exit 1
-          }
-
-          Write-Host "Using DLL from: $($dll.FullName)"
-          Copy-Item $dll.FullName .\out\JakesCommands.RevitAddin.dll
+          Copy-Item .\src\JakesCommands.RevitAddin\bin\Release\net48\JakesCommands.RevitAddin.dll .\out\JakesCommands.RevitAddin.dll
           Copy-Item .\deployment\JakesCommands.addin .\out\JakesCommands.addin
           Compress-Archive -Path .\out\JakesCommands.RevitAddin.dll, .\out\JakesCommands.addin -DestinationPath .\out\JakesCommands-Install.zip -Force
 
