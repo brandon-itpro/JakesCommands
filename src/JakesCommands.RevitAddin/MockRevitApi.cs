@@ -62,6 +62,8 @@ namespace Autodesk.Revit.DB
         public double Y { get; }
         public double Z { get; }
 
+        public XYZ Add(XYZ other) => new(X + other.X, Y + other.Y, Z + other.Z);
+
         public static XYZ operator +(XYZ a, XYZ b) => new(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
         public static XYZ operator /(XYZ a, double scalar) => new(a.X / scalar, a.Y / scalar, a.Z / scalar);
     }

@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  test-mock-build:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -19,8 +19,8 @@ jobs:
       - name: Restore
         run: dotnet restore JakesCommands.sln
 
-      - name: Build
-        run: dotnet build JakesCommands.sln --configuration Release --no-restore
+      - name: Build (CI mock mode)
+        run: dotnet build JakesCommands.sln --configuration Release --no-restore -p:MOCK_REVIT_API=true
 
       - name: Test
-        run: dotnet test JakesCommands.sln --configuration Release --no-build
+        run: dotnet test JakesCommands.sln --configuration Release --no-build -p:MOCK_REVIT_API=true

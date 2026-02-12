@@ -35,7 +35,7 @@ public class RotateSelectionCommand : IExternalCommand
             }
 
             XYZ pivot = ResolvePivotPoint(element);
-            Line axis = Line.CreateBound(pivot, pivot + XYZ.BasisZ);
+            Line axis = Line.CreateBound(pivot, pivot.Add(XYZ.BasisZ));
             ElementTransformUtils.RotateElement(document, id, axis, radians);
         }
 
@@ -66,12 +66,15 @@ public class RotateSelectionCommand : IExternalCommand
             return locationPoint.Point;
         }
 
-        BoundingBoxXYZ? bbox = element.get_BoundingBox(view: null);
+        BoundingBoxXYZ? bbox = element.get_BoundingBox(null);
         if (bbox is null)
         {
             return XYZ.Zero;
         }
 
-        return (bbox.Min + bbox.Max) / 2.0;
+        return new XYZ(
+            (bbox.Min.X + bbox.Max.X) / 2.0,
+            (bbox.Min.Y + bbox.Max.Y) / 2.0,
+            (bbox.Min.Z + bbox.Max.Z) / 2.0);
     }
 }
