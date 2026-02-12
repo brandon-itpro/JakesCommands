@@ -17,13 +17,13 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Build real Revit addin (non-mock)
-        run: dotnet build .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj -c Release -o .\out\build
+        run: dotnet build .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj -c Release
 
       - name: Prepare package files
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path out | Out-Null
-          Copy-Item .\out\build\JakesCommands.RevitAddin.dll .\out\JakesCommands.RevitAddin.dll
+          Copy-Item .\src\JakesCommands.RevitAddin\bin\Release\net48\JakesCommands.RevitAddin.dll .\out\JakesCommands.RevitAddin.dll
           Copy-Item .\deployment\JakesCommands.addin .\out\JakesCommands.addin
           Compress-Archive -Path .\out\JakesCommands.RevitAddin.dll, .\out\JakesCommands.addin -DestinationPath .\out\JakesCommands-Install.zip -Force
 
