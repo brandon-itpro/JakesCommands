@@ -2,24 +2,10 @@
 
 A Revit add-in that rotates selected objects by **90°** or **180°**.
 
-## What you want (no local build)
-
-You do **not** need a dev machine.
-
-Use GitHub Actions to generate these files for Jake:
-- `JakesCommands.RevitAddin.dll`
-- `JakesCommands.addin`
-- `JakesCommands-Install.zip`
-
-## One-click way to get the files
-
-1. Open GitHub repo → **Actions**.
-2. Run workflow: **release-artifacts** (button: **Run workflow**).
-3. Open that run when it finishes.
-4. Download artifact: **JakesCommands-Install**.
-5. Give Jake `JakesCommands-Install.zip` (or the two files directly).
-
 ## Jake install
+
+Start by downloading the JakesCommands-Install.zip zip file from here: https://github.com/brandon-itpro/JakesCommands/releases/tag/v1.0.1
+(Or individually download the JakesCommands.addin and JakesCommands.RevitAddin.dll files. 
 
 Jake copies these two files into:
 
