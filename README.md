@@ -2,6 +2,84 @@
 
 A Revit add-in that rotates selected objects by **90°** or **180°**.
 
+---
+
+## For Jake (non-programmer): easiest way to install
+
+Yes — if you want this to be easy for Jake, you should publish a **GitHub Release** each time you update the add-in.
+
+### Why a Release helps
+A Release gives Jake a single ZIP download. He does **not** need Visual Studio, Git, or command-line tools.
+
+### What you should do on GitHub now
+1. Go to your repo on GitHub.
+2. Click **Releases** → **Draft a new release**.
+3. Create a tag like `v1.0.0`.
+4. In this repo, upload these files as release assets:
+   - `JakesCommands.RevitAddin.dll`
+   - `JakesCommands.addin`
+   - (Optional but recommended) `JakesCommands-Install.zip` that includes both files and a 1-page install note.
+5. Publish release.
+
+After this, Jake only downloads and copies files to one folder.
+
+---
+
+## Jake’s install steps (Windows + Revit)
+
+### 1) Download
+- Open the repo’s **Latest Release** page.
+- Download `JakesCommands-Install.zip` (or download `JakesCommands.RevitAddin.dll` + `JakesCommands.addin`).
+
+### 2) Copy files
+Copy the two files into this folder (create it if needed):
+
+```text
+%AppData%\Autodesk\Revit\Addins\2024\
+```
+
+> If you use a different Revit year, replace `2024` with your year (for example `2023` or `2025`).
+
+You should end up with:
+
+```text
+%AppData%\Autodesk\Revit\Addins\2024\JakesCommands.RevitAddin.dll
+%AppData%\Autodesk\Revit\Addins\2024\JakesCommands.addin
+```
+
+### 3) Start Revit
+- Open Revit.
+- Look for a ribbon tab named **Jakes Commands**.
+- Click **Rotate Selection**.
+
+### 4) Use it
+- Select object(s).
+- Run **Rotate Selection**.
+- Pick **90°** or **180°** in the dialog.
+
+---
+
+## Quick troubleshooting (for non-programmers)
+
+### I don’t see “Jakes Commands” tab
+- Make sure `.dll` and `.addin` are in the same Addins year folder.
+- Make sure the year folder matches your Revit version.
+- Close Revit fully and reopen.
+
+### Revit says it can’t load the add-in
+- Right-click downloaded `.dll` → **Properties** → if there is an **Unblock** checkbox, check it.
+- Confirm `.addin` file points to the exact DLL path.
+
+### Still not working
+Send IT or the developer:
+- Revit version (year)
+- screenshot of `%AppData%\Autodesk\Revit\Addins\<year>` contents
+- exact error message popup
+
+---
+
+## For developer/IT: build and package
+
 ## Project layout
 
 - `src/JakesCommands.RevitAddin` – Revit external application + command wiring.
@@ -17,13 +95,9 @@ dotnet test JakesCommands.sln
 
 > Note: this repository includes a lightweight mock of Revit API types so CI can compile without the proprietary Revit SDK. To run inside Revit, remove `MOCK_REVIT_API` from `JakesCommands.RevitAddin.csproj` and reference the real Revit API assemblies for your installed Revit version.
 
-## Installing in Revit
+## Example `.addin` manifest
 
-1. Build `src/JakesCommands.RevitAddin` in Release mode.
-2. Copy output DLLs to a local add-ins folder.
-3. Create a `.addin` manifest (example below) and point to the compiled DLL/class names.
-
-### Example `.addin` manifest
+Create `JakesCommands.addin` and adjust the `<Assembly>` path:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -38,5 +112,3 @@ dotnet test JakesCommands.sln
   </AddIn>
 </RevitAddIns>
 ```
-
-Once loaded, use the **Jakes Commands** ribbon tab and run **Rotate Selection**.
