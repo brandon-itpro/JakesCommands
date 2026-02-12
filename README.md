@@ -21,15 +21,3 @@ JakesCommands.addin
 ```
 
 Then restart Revit.
-
-## About MOCK_REVIT_API
-
-`MOCK_REVIT_API` is CI test mode only.
-Release packaging workflow builds **non-mock** so Jake gets the real add-in DLL.
-
-## Repository layout
-
-- `src/JakesCommands.RevitAddin` – Revit add-in command/app
-- `src/JakesCommands.Core` – shared rotation logic
-- `tests/JakesCommands.Core.Tests` – unit tests
-- `deployment/JakesCommands.addin` – add-in manifest template
