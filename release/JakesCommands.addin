@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Jakes Commands</Name>
+    <Assembly>JakesCommands.RevitAddin.dll</Assembly>
+    <AddInId>3eacf836-3453-4c8c-a39f-3500d8f56f2a</AddInId>
+    <FullClassName>JakesCommands.RevitAddin.JakesCommandsApp</FullClassName>
+    <VendorId>JKCM</VendorId>
+    <VendorDescription>Jake's custom Revit productivity commands</VendorDescription>
+  </AddIn>
+</RevitAddIns>
