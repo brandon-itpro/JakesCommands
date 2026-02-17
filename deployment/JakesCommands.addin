@@ -2,7 +2,7 @@
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>Jakes Commands</Name>
-    <Assembly>%AppData%\Autodesk\Revit\Addins\2024\JakesCommands.RevitAddin.dll</Assembly>
+    <Assembly>JakesCommands.RevitAddin.dll</Assembly>
     <AddInId>3eacf836-3453-4c8c-a39f-3500d8f56f2a</AddInId>
     <FullClassName>JakesCommands.RevitAddin.JakesCommandsApp</FullClassName>
     <VendorId>JKCM</VendorId>
