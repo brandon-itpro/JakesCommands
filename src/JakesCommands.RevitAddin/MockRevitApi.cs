@@ -100,7 +100,7 @@ namespace Autodesk.Revit.UI
 
     public interface IExternalCommand
     {
-        Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements);
+        Result Execute(ExternalCommandData commandData, string message, ElementSet elements);
     }
 
     public interface IExternalApplication

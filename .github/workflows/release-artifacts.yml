@@ -28,7 +28,7 @@ jobs:
         run: dotnet restore .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj --source https://api.nuget.org/v3/index.json --no-cache
 
       - name: Build real Revit addin (non-mock)
-        run: dotnet build .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj -c Release --no-restore -o .\out\build
+        run: dotnet build .\src\JakesCommands.RevitAddin\JakesCommands.RevitAddin.csproj -c Release --no-restore -p:MOCK_REVIT_API=false -o .\out\build
 
       - name: Prepare package files
         shell: pwsh
