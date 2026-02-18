@@ -36,6 +36,8 @@ JakesCommands.addin
 
 Then restart Revit.
 
+If you previously copied extra files, remove any old `JakesCommands.RevitAddin.dll.config` file from that folder before restarting Revit.
+
 ## Important fix for the “Assembly Not Found” popup
 
 If Revit shows an error like:
