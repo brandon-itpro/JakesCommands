@@ -8,7 +8,12 @@ namespace JakesCommands.RevitAddin;
 [Transaction(TransactionMode.Manual)]
 public class RotateSelectionCommand : IExternalCommand
 {
-    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+    public Result Execute(ExternalCommandData commandData, string message, ElementSet elements)
+    {
+        return ExecuteCore(commandData);
+    }
+
+    private static Result ExecuteCore(ExternalCommandData commandData)
     {
         UIDocument uiDocument = commandData.Application.ActiveUIDocument;
         Document document = uiDocument.Document;
@@ -45,7 +50,6 @@ public class RotateSelectionCommand : IExternalCommand
 
     private static RotationOption AskRotationOption()
     {
-        // Keep this deterministic and simple. You can extend this to a custom WPF dialog later.
         TaskDialog dialog = new("Jakes Commands")
         {
             MainInstruction = "Choose a rotation angle",
