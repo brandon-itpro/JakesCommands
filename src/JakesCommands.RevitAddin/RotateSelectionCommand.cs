@@ -8,7 +8,7 @@ namespace JakesCommands.RevitAddin;
 [Transaction(TransactionMode.Manual)]
 public class RotateSelectionCommand : IExternalCommand
 {
-    public Result Execute(ExternalCommandData commandData, string message, ElementSet elements)
+    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
     {
         return ExecuteCore(commandData);
     }
